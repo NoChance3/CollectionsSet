@@ -1,19 +1,29 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
+import java.util.TreeSet;
 import java.util.List;
 
 public class EmailList {
 
-    public void add(String email) {
-        // TODO: валидный формат email добавляется, email это строка, она быть может любой
-        // принять решение добавлять аргумент email или нет должен этот метод
+    TreeSet<String> treeSet;
+    String regex = "[A-Za-z0-9]{1,}+@([A-Za-z0-9]{1,}+[\\.]{0,1}[A-Za-z0-9]{1,})";
+    public EmailList(){
+        this.treeSet = new TreeSet<>();
+    }
+    public boolean add(String email) {
+        if (email.matches(regex)){
+            email = email.toLowerCase();
+            if (!treeSet.contains(email)){
+                treeSet.add(email);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public List<String> getSortedEmails() {
-        // TODO: возвращается сортированный список электронных адресов в алфавитном порядке
-        return new ArrayList<>();
+        public List<String> getSortedEmails () {
+            List<String> tempList = new ArrayList<String>(treeSet);
+            return tempList;}
     }
 
-}
